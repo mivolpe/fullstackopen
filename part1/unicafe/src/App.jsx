@@ -11,10 +11,17 @@ const App = () => {
   const title1 = "give feedback"
   const title2 = "statistics"
 
+  const total = good+neutral+bad
+  const avg = (good-bad)/total
+  const pctPositive = (good/total)*100
+
   const statistics = [
     {'text': 'good', 'value': good},
     {'text': 'neutral', 'value': neutral},
-    {'text': 'bad', 'value': bad}
+    {'text': 'bad', 'value': bad},
+    {'text': 'all', 'value': total},
+    {'text': 'average', 'value': avg},
+    {'text': 'positive', 'value': pctPositive + ' %'}
   ]
 
   return (
@@ -24,7 +31,7 @@ const App = () => {
       <Button onClick={() => setNeutral(neutral+1)} text='neutral' />
       <Button onClick={() => setBad(bad+1)} text='bad' />
       <Title text={title2}/>
-      <Statistics statistics={statistics} />
+      <Statistics statistics={statistics} total={total} />
     </div>
   )
 }
